@@ -1,0 +1,24 @@
+#Region ;**** Directives created by AutoIt3Wrapper_GUI ****
+#AutoIt3Wrapper_UseX64=y
+#EndRegion ;**** Directives created by AutoIt3Wrapper_GUI ****
+Opt("MustDeclareVars", 1)
+#include "emgucv-autoit-bindings\cve_extra.au3"
+_OpenCV_DLLOpen("libemgucv-windesktop-4.5.3.4721\libs\x64\cvextern.dll")
+
+Local $img_obj = _cveImreadAndCheck("pic1\box.png", $CV_IMREAD_COLOR)   ; query image (small object)
+Local $gray_obj = _cveMatCreate()
+_cveCvtColorMat($img_obj, $gray_obj, $CV_COLOR_BGR2GRAY)
+
+;_cveGaussianBlurMat($matSrc, $matDst, $ksize, $sigmaX, $sigmaY = 0, $borderType = $CV_BORDER_DEFAULT)
+Local $Gaus_obj = _cveMatCreate()
+Local $ksize = "(3,3)"
+_cveGaussianBlurMat($gray_obj, $Gaus_obj, $ksize, 3, 0, $CV_BORDER_DEFAULT)
+
+;_cveThresholdMat($gray_obj, $gray_obj, $thresh, $maxval, $type)
+;_cveFindContoursMat($matImage, $matContours, $matHierarchy, $mode, $method, $offset = _cvPoint())
+;_cveBoundingRectangleMat($matPoints, $boundingRect)
+
+_cveImshowMat("", $Gaus_obj)
+_cveWaitKey()
+_cveDestroyAllWindows()
+_Opencv_DLLClose()
