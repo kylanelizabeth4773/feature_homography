@@ -1,0 +1,2 @@
+# feature_homography
+$contoursVect = _VectorOfVectorOfPointCreate() $contours = _cveOutputArrayFromVectorOfVectorOfPoint($contourVect)  $hierarchyVect = _VectorOfMatCreate() $hierarchy = _cveOutputArrayFromVectorOfMat($hierarchyVect)  ; rest of the code here  ; Then loop through the VectorOfVectorOfPoint like in ; https://github.com/smbape/node-emgucv-autoit-generator/blob/master/samples/tutorial_code/features2D/feature_homography/matching_homography_Demo.au3#L232
